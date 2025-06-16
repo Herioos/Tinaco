@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="730.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tinaco.controllers.verTinacoControllers">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="1290.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../accests/ver_tinaco.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="botonAtrasVerTinaco" layoutY="604.0" mnemonicParsing="false" onAction="#atrasVerTinacoClick" opacity="0.0" prefHeight="98.0" prefWidth="206.0" text="Button" />
+      <TableView fx:id="tablaTinacos" layoutX="103.0" layoutY="196.0" prefHeight="374.0" prefWidth="1088.0">
+        <columns>
+          <TableColumn fx:id="colNumeroTinaco" prefWidth="121.60000610351562" text="Numero" />
+          <TableColumn fx:id="colNombreTinaco" prefWidth="287.19996643066406" text="Nombre del tinaco" />
+            <TableColumn fx:id="colCapacidad" prefWidth="174.39996337890625" text="Capacidad" />
+            <TableColumn fx:id="colNumeroSensor" prefWidth="136.79998779296875" text="Numero del sensor" />
+            <TableColumn fx:id="colNombreSensor" prefWidth="415.2000732421875" text="Nombre del sensor" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

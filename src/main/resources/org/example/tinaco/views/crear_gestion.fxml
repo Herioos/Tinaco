@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tinaco.controllers.crearGestionControllers">
+   <children>
+      <ImageView fitHeight="730.0" fitWidth="1290.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="131.57662963867188" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../accests/crearGestion.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="botonAgregarGestion" layoutY="184.0" mnemonicParsing="false" onAction="#agregarGestionClick" opacity="0.0" prefHeight="108.0" prefWidth="263.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="botonAtrasCrearGestion" layoutY="309.0" mnemonicParsing="false" onAction="#atrasCrearGestionClick" opacity="0.0" prefHeight="108.0" prefWidth="263.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="598.0" layoutY="269.0" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="55.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="598.0" layoutY="176.0" mnemonicParsing="false" opacity="0.0" prefHeight="48.0" prefWidth="55.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="423.0" layoutY="176.0" mnemonicParsing="false" opacity="0.0" prefHeight="48.0" prefWidth="55.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="428.0" layoutY="269.0" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="46.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="textNombreGestion" layoutX="653.0" layoutY="285.0" prefHeight="48.0" prefWidth="325.0" promptText="Nombre de la gestion">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="textNivelMaximo" layoutX="888.0" layoutY="417.0" prefHeight="64.0" prefWidth="90.0" promptText="100">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="textNivelMinimo" layoutX="888.0" layoutY="565.0" prefHeight="64.0" prefWidth="90.0" promptText="100">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </TextField>
+      <ComboBox fx:id="comboTinaco" layoutX="1037.0" layoutY="285.0" onAction="#comboTinacoClick" prefHeight="48.0" prefWidth="152.0" promptText="SELECCIONE" />
+      <Button fx:id="botonMenosMaximo" layoutX="744.0" layoutY="405.0" mnemonicParsing="false" onAction="#menosMaximoClick" opacity="0.0" prefHeight="84.0" prefWidth="90.0" text="Button" />
+      <Button fx:id="botonMasMaximo" layoutX="1056.0" layoutY="405.0" mnemonicParsing="false" onAction="#masMaximoClick" opacity="0.0" prefHeight="84.0" prefWidth="90.0" text="Button" />
+      <Button fx:id="botonMasMinimo" layoutX="1056.0" layoutY="555.0" mnemonicParsing="false" onAction="#masMinimoClick" opacity="0.0" prefHeight="84.0" prefWidth="90.0" text="Button" />
+      <Button fx:id="botonMenosMinimo" layoutX="744.0" layoutY="555.0" mnemonicParsing="false" onAction="#menosMinimoClick" opacity="0.0" prefHeight="84.0" prefWidth="90.0" text="Button" />
+   </children>
+</AnchorPane>
