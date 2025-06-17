@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainApplication extends Application {
+    //hola pendejo
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/login.fxml"));
