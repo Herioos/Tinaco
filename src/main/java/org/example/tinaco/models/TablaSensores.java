@@ -11,7 +11,6 @@ public class TablaSensores {
         this.numero = new SimpleIntegerProperty(numero);
         this.nombre = new SimpleStringProperty(nombre);
     }
-
     public int getNumero() {
         return numero.get();
     }

@@ -23,9 +23,10 @@ public class verTinacoControllers {
     @FXML private TableView<TablaTinacos> tablaTinacos;
     @FXML private TableColumn<TablaTinacos,Integer> colNumeroTinaco;
     @FXML private TableColumn<TablaTinacos,String> colNombreTinaco;
-    @FXML private TableColumn<TablaTinacos,Integer> colNumeroSensor;
-    @FXML private TableColumn<TablaTinacos,String> colNombreSensor;
     @FXML private TableColumn<TablaTinacos,Integer> colCapacidad;
+    @FXML private TableColumn<TablaTinacos,Integer> colNumeroSensor;
+    @FXML private TableColumn<TablaTinacos,Integer> colNombreSensor;
+
     @FXML private Button botonAtrasVerTinaco;
 
     //COSTRUCTOR
@@ -57,15 +58,9 @@ public class verTinacoControllers {
         ObservableList<TablaTinacos> listaTinacos = FXCollections.observableArrayList();
 
         // Suponiendo que hay una columna id_usuario en la tabla
-        String sql = "SELECT \n" +
-                "  tt.id_tinaco, \n" +
-                "  tt.nombre_t, \n" +
-                "  tt.capacidad, \n" +
-                "  ts.nombre_s\n" +
-                "FROM tabla_usuarios tu\n" +
-                "JOIN tabla_sensores ts ON tu.id_usuario = ts.id_usuario\n" +
-                "JOIN tabla_tinacos tt ON ts.id_sensor = tt.id_sensor\n" +
-                "WHERE tu.id_usuario = ?";
+        String sql = "select tt.id_tinaco,tt.nombre_t,tt.capacidad,tt.id_sensor,tt.nombre_s\n" +
+                "from tabla_tinacos tt \n" +
+                "where tt.id_usuario =?";
 
         try (Connection conn = DriverManager.getConnection(url + bd, usuario, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -77,17 +72,19 @@ public class verTinacoControllers {
                 int numeroT = rs.getInt("id_tinaco");
                 String nombreT = rs.getString("nombre_t");
                 int capacidadT = rs.getInt("capacidad");
-                String nombreS = rs.getNString("nombre_s");  // <-- CAMBIADO
-                listaTinacos.add(new TablaTinacos(numeroT, nombreT, capacidadT, nombreS));
+                int numeroS = rs.getInt("id_sensor");
+                String nombreS = rs.getString("nombre_s");  // <-- CAMBIADO
+                listaTinacos.add(new TablaTinacos(numeroT, nombreT, capacidadT,numeroS, nombreS));
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        colNumeroTinaco.setCellValueFactory(new PropertyValueFactory<>("numeroT"));
-        colNombreTinaco.setCellValueFactory(new PropertyValueFactory<>("nombreT"));
-        colCapacidad.setCellValueFactory(new PropertyValueFactory<>("capacidadT"));
-        colNombreSensor.setCellValueFactory(new PropertyValueFactory<>("nombreS"));
+        colNumeroTinaco.setCellValueFactory(new PropertyValueFactory<>("numeroTinaco"));
+        colNombreTinaco.setCellValueFactory(new PropertyValueFactory<>("nombreTinaco"));
+        colCapacidad.setCellValueFactory(new PropertyValueFactory<>("capacidadTinaco"));
+        colNumeroSensor.setCellValueFactory(new PropertyValueFactory<>("numeroSensor"));
+        colNombreSensor.setCellValueFactory(new PropertyValueFactory<>("nombreSensor"));
         tablaTinacos.setItems(listaTinacos);
     }
 }

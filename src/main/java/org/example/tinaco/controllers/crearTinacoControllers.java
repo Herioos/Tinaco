@@ -100,6 +100,7 @@ public class crearTinacoControllers implements Initializable {
             int capacidadTinaco = Integer.parseInt(textCapacidad.getText());
             ObtenerSensores sensorSeleccionado = comboSensor.getValue();
             int id_sensor = sensorSeleccionado.getId_sensor();
+            String nombreSensor = sensorSeleccionado.getNombreSensor();
             //CONEXION
             //insert de los datos en la tabla sensores
             String url = "jdbc:mysql://localhost:3306/";
@@ -111,12 +112,13 @@ public class crearTinacoControllers implements Initializable {
                 Connection connection = DriverManager.getConnection(url + bd, usuario, password);
                 System.out.println("Conexion exitosa");
                 // Insertar
-                String tabla_u = ("INSERT INTO tabla_tinacos (nombre_t,capacidad,id_sensor,id_usuario) VALUES (?,?,?,?)");
+                String tabla_u = ("INSERT INTO tabla_tinacos (nombre_t,capacidad,id_sensor,nombre_s,id_usuario) VALUES (?,?,?,?,?)");
                 PreparedStatement preparedStatement = connection.prepareStatement(tabla_u);
                 preparedStatement.setString(1, nombreTinaco);
                 preparedStatement.setInt(2,capacidadTinaco);
                 preparedStatement.setInt(3,id_sensor);
-                preparedStatement.setInt(4,usuariosT.getId_usuario());
+                preparedStatement.setString(4,nombreSensor);
+                preparedStatement.setInt(5,usuariosT.getId_usuario());
                 preparedStatement.executeUpdate();
                 connection.close();
             } catch (SQLException e) {
