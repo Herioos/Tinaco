@@ -42,28 +42,101 @@ public class eliminarTinacoControllers {
     }
     //ELIMINAR TINACO
     /// CHAMBA DE HERI
+    @FXML
     public boolean eliminarTinacoClick(ActionEvent actionEvent) throws ClassNotFoundException {
+        // 1. Validación básica
         if (textEliminarTinaco.getText().isEmpty()) {
-            Alert alerta = new Alert(Alert.AlertType.WARNING);
-            alerta.setTitle("Alerta");
-            alerta.setHeaderText("Verifique si colocó la ID");
-            alerta.setContentText("Necesitas una ID para eliminar");
-            alerta.show();
+            mostrarAlerta(Alert.AlertType.WARNING, "Verifique si colocó la ID",
+                    "Necesitas una ID para eliminar");
             return false;
         }
-        //confirmar registro
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmacion");
-        alert.setHeaderText("¿Deseas eliminar?");
-        alert.setContentText("ID del tinaco : "+textEliminarTinaco.getId());
-        Optional<ButtonType> resultado = alert.showAndWait();
-        if (resultado.isPresent() && resultado.get().equals(ButtonType.OK)) {
-            int idSensor = Integer.parseInt(textEliminarTinaco.getText());
-            //caso si le da aceptar
+
+        int idTinaco;
+        try {
+            idTinaco = Integer.parseInt(textEliminarTinaco.getText().trim());
+        } catch (NumberFormatException e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "ID inválido",
+                    "Debes ingresar un número válido como ID");
+            return false;
         }
-        //caso contrarios
-        return false;
+
+        // 2. Confirmación con el usuario
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
+                "ID del tinaco: " + idTinaco, ButtonType.OK, ButtonType.CANCEL);
+        confirm.setTitle("Confirmación");
+        confirm.setHeaderText("¿Deseas eliminar este tinaco y su sensor?");
+        if (confirm.showAndWait().orElse(ButtonType.CANCEL) != ButtonType.OK) {
+            return false;   // canceló
+        }
+
+        // 3. Conexión y transacción
+        String url = "jdbc:mysql://localhost:3306/tinaco";
+        String usuario = "root";
+        String password = "";
+
+        String consultaSensor =
+                "SELECT id_sensor FROM tabla_tinacos WHERE id_tinaco = ?";
+        String borrarTinaco =
+                "DELETE FROM tabla_tinacos WHERE id_tinaco = ?";
+        String borrarSensor =
+                "DELETE FROM tabla_sensores WHERE id_sensor = ? " +
+                        "AND NOT EXISTS (SELECT 1 FROM tabla_tinacos WHERE id_sensor = ?)";
+
+        try (Connection conn = DriverManager.getConnection(url, usuario, password)) {
+            conn.setAutoCommit(false);           // --- INICIA TRANSACCIÓN ---
+
+            // 3a. Obtener id_sensor asociado
+            int idSensor = -1;
+            try (PreparedStatement ps = conn.prepareStatement(consultaSensor)) {
+                ps.setInt(1, idTinaco);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        idSensor = rs.getInt(1);
+                    } else {
+                        mostrarAlerta(Alert.AlertType.ERROR, "Tinaco no encontrado",
+                                "Verifica que el ID sea correcto.");
+                        conn.rollback();
+                        return false;
+                    }
+                }
+            }
+
+            // 3b. Borrar el tinaco (hijo)
+            try (PreparedStatement psDelTinaco = conn.prepareStatement(borrarTinaco)) {
+                psDelTinaco.setInt(1, idTinaco);
+                psDelTinaco.executeUpdate();
+            }
+
+            // 3c. Borrar el sensor (padre) solo si ya no lo usa ningún tinaco
+            try (PreparedStatement psDelSensor = conn.prepareStatement(borrarSensor)) {
+                psDelSensor.setInt(1, idSensor);
+                psDelSensor.setInt(2, idSensor);
+                psDelSensor.executeUpdate();
+            }
+
+            conn.commit();                       // --- TODO OK ---
+            mostrarAlerta(Alert.AlertType.INFORMATION, null,
+                    "El tinaco (y su sensor) fueron eliminados correctamente.");
+            cargarDatos();                       // refresca la tabla
+            return true;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            mostrarAlerta(Alert.AlertType.ERROR, "Error de base de datos",
+                    "No se pudo completar la operación.");
+            return false;
+        }
     }
+
+    private void mostrarAlerta(Alert.AlertType tipo, String encabezado, String cuerpo) {
+        Alert a = new Alert(tipo);
+        a.setTitle("Aviso");
+        a.setHeaderText(encabezado);
+        a.setContentText(cuerpo);
+        a.show();
+    }
+
+
     //TABLA CON LOS TINACOS
     public void cargarDatos() throws ClassNotFoundException {
         String url = "jdbc:mysql://localhost:3306/";
