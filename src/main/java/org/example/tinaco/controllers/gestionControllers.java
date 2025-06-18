@@ -120,13 +120,14 @@ public class gestionControllers implements Initializable {
     }
     //NO TOCAR --- // ELIMINAR TINACOS
     @FXML
-    public void eliminarTinacoClick(ActionEvent actionEvent) throws IOException {
+    public void eliminarTinacoClick(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         Stage stage = (Stage) botonEliminarTinaco.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/eliminar_tinaco.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         eliminarTinacoControllers eliminarTinaco = fxmlLoader.getController();
         eliminarTinaco.pasarUsuario(usuariosG);
+        eliminarTinaco.cargarDatos();
 
         stage.setTitle("Eliminar tinacos ( "+usuariosG.getNombreU()+" )");
         stage.setScene(scene);
@@ -243,7 +244,7 @@ public class gestionControllers implements Initializable {
 
             gestionControllers gestion = fxmlLoader.getController();
             gestion.pasarUsuario(usuariosG);
-
+            gestion.cargarDatos();
             stage.setTitle("Gestion del agua ( "+usuariosG.getNombreU()+" )");
             stage.setScene(scene);
         }

@@ -15,10 +15,10 @@
             <Image url="@../accests/eliminar_tinaco.jpg" />
          </image>
       </ImageView>
-      <TableView layoutX="502.0" layoutY="200.0" prefHeight="466.0" prefWidth="705.0">
+      <TableView fx:id="tablaTinacos" layoutX="502.0" layoutY="200.0" prefHeight="466.0" prefWidth="705.0">
         <columns>
-          <TableColumn prefWidth="119.20001220703125" text="Numero" />
-          <TableColumn prefWidth="584.8000122070313" text="Nombre del tinaco" />
+          <TableColumn fx:id="colNumeroTinaco" prefWidth="119.20001220703125" text="Numero" />
+          <TableColumn fx:id="colNombreTinaco" prefWidth="584.8000122070313" text="Nombre del tinaco" />
         </columns>
       </TableView>
       <TextField fx:id="textEliminarTinaco" layoutX="101.0" layoutY="328.0" prefHeight="54.0" prefWidth="270.0" />
