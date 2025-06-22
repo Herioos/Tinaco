@@ -118,6 +118,7 @@ public class eliminarTinacoControllers {
             mostrarAlerta(Alert.AlertType.INFORMATION, null,
                     "El tinaco (y su sensor) fueron eliminados correctamente.");
             cargarDatos();                       // refresca la tabla
+            textEliminarTinaco.setText("");
             return true;
 
         } catch (SQLException ex) {
