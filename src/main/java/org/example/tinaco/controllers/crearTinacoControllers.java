@@ -11,7 +11,6 @@ import org.example.tinaco.MainApplication;
 import org.example.tinaco.models.ObtenerSensores;
 import org.example.tinaco.models.ObtenerUsuarios;
 import org.example.tinaco.models.SensorDAO;
-import org.example.tinaco.models.Usuarios;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -139,6 +138,7 @@ public class crearTinacoControllers implements Initializable {
 
             gestionControllers gestion = fxmlLoader.getController();
             gestion.pasarUsuario(usuariosT);
+            gestion.cargarDatos();
 
             stage.setTitle("Gestion del agua ( "+usuariosT.getNombreU()+" )");
             stage.setScene(scene);
