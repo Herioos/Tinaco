@@ -51,12 +51,12 @@
             <Font size="22.0" />
          </font>
       </TextField>
-      <TextField fx:id="textNivelMaximo" layoutX="888.0" layoutY="417.0" prefHeight="64.0" prefWidth="90.0" promptText="100">
+      <TextField fx:id="textNivelMaximo" editable="false" layoutX="888.0" layoutY="417.0" prefHeight="64.0" prefWidth="90.0" promptText="100">
          <font>
             <Font size="29.0" />
          </font>
       </TextField>
-      <TextField fx:id="textNivelMinimo" layoutX="888.0" layoutY="565.0" prefHeight="64.0" prefWidth="90.0" promptText="100">
+      <TextField fx:id="textNivelMinimo" editable="false" layoutX="888.0" layoutY="565.0" prefHeight="64.0" prefWidth="90.0" promptText="100">
          <font>
             <Font size="29.0" />
          </font>

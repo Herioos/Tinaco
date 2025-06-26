@@ -21,6 +21,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class crearGestionControllers implements Initializable {
+    int cantidad_max;
+    int cantidad_min;
     private ObtenerUsuarios usuariosCg;
     @FXML private Button botonAtrasCrearGestion;
     @FXML private Button botonAgregarGestion;
@@ -78,7 +80,7 @@ public class crearGestionControllers implements Initializable {
             alert2.show();
             return;
         }
-        if(comboTinaco.getItems().isEmpty()){
+        if(comboTinaco.getValue()==null){
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
             alert2.setTitle("Aviso");
             alert2.setHeaderText("ERROR");
@@ -91,7 +93,7 @@ public class crearGestionControllers implements Initializable {
         alert.setTitle("Confirmacion");
         alert.setHeaderText("¿Desea guardar?");
         alert.setContentText("Nombre de la gestion : "+textNombreGestion.getText()+"\nNombre del tinaco : "+comboTinaco.getValue().getNombreTinaco()+
-                "\nCapacidad maxima : "+textNivelMaximo.getText()+"\nCapacidad minima : "+textNivelMinimo);
+                "\nCapacidad maxima : "+textNivelMaximo.getText()+"\nCapacidad minima : "+textNivelMinimo.getText());
         Optional<ButtonType> resultado = alert.showAndWait();
 
         if (resultado.isPresent() && resultado.get().equals(ButtonType.OK)){
@@ -99,8 +101,8 @@ public class crearGestionControllers implements Initializable {
             String nombreGestion = textNombreGestion.getText();
             ObtenerTinacos obtenerTinacos = comboTinaco.getValue();
             String nombreTinaco = obtenerTinacos.getNombreTinaco();
-            int cantidadMax = Integer.parseInt(textNivelMaximo.getId());
-            int cantidadMin = Integer.parseInt(textNivelMinimo.getId());
+            int cantidadMax = Integer.parseInt(textNivelMaximo.getText());
+            int cantidadMin = Integer.parseInt(textNivelMinimo.getText());
 
             //CONEXION
             //insert de los datos en la tabla sensores
@@ -128,6 +130,7 @@ public class crearGestionControllers implements Initializable {
             }// termina el insert
             System.out.println("gestion añadida \n");
 
+
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
             alert2.setTitle("Aviso");
             alert2.setHeaderText("Se añadio correctamente");
@@ -135,8 +138,13 @@ public class crearGestionControllers implements Initializable {
             alert2.show();
             // ABRIR ECENA DE NEW FX
             Stage stage = (Stage) botonAgregarGestion.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/crear_gestion.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/gestion.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
+            gestionControllers gestion = fxmlLoader.getController();
+            gestion.pasarUsuario(usuariosCg);
+            gestion.cargarDatos();
+            stage.setTitle("Gestion de agua ( "+usuariosCg.getNombreU()+" )");
+            stage.setScene(scene);
 
         }
 
@@ -145,16 +153,76 @@ public class crearGestionControllers implements Initializable {
     public void comboTinacoClick(ActionEvent actionEvent) {
     }
     @FXML
-    public void menosMaximoClick(ActionEvent actionEvent) {
+    public void masMaximoClick(ActionEvent actionEvent) {
+        cantidad_max = Integer.parseInt(textNivelMaximo.getText());
+        if(cantidad_max >= 100){
+            cantidad_max=100;
+            textNivelMaximo.setText(String.valueOf(cantidad_max));
+            return;
+        }
+        try {
+            cantidad_max = cantidad_max + 10;
+            if(cantidad_max>100){
+                cantidad_max=100;
+            }
+            textNivelMaximo.setText(String.valueOf(cantidad_max));
+        } catch (NumberFormatException e) {
+            System.out.println("Error: El texto ingresado no es un número válido.");
+        }
     }
     @FXML
-    public void masMaximoClick(ActionEvent actionEvent) {
+    public void menosMaximoClick(ActionEvent actionEvent) {
+        cantidad_max = Integer.parseInt(textNivelMaximo.getText());
+        if(cantidad_max <= 50){
+            cantidad_max=50;
+            textNivelMaximo.setText(String.valueOf(cantidad_max));
+            return;
+        }
+        try {
+            cantidad_max = cantidad_max - 10;
+            if(cantidad_max<50){
+                cantidad_max=50;
+            }
+            textNivelMaximo.setText(String.valueOf(cantidad_max));
+        } catch (NumberFormatException e) {
+            System.out.println("Error: El texto ingresado no es un número válido.");
+        }
     }
     @FXML
     public void masMinimoClick(ActionEvent actionEvent) {
+        cantidad_min = Integer.parseInt(textNivelMinimo.getText());
+        if(cantidad_min >= 40){
+            cantidad_min=40;
+            textNivelMinimo.setText(String.valueOf(cantidad_min));
+            return;
+        }
+        try {
+            cantidad_min = cantidad_min + 10;
+            if(cantidad_min>40){
+                cantidad_min=40;
+            }
+            textNivelMinimo.setText(String.valueOf(cantidad_min));
+        } catch (NumberFormatException e) {
+            System.out.println("Error: El texto ingresado no es un número válido.");
+        }
     }
     @FXML
     public void menosMinimoClick(ActionEvent actionEvent) {
+        cantidad_min = Integer.parseInt(textNivelMinimo.getText());
+        if(cantidad_min <= 10){
+            cantidad_min=10;
+            textNivelMinimo.setText(String.valueOf(cantidad_min));
+            return;
+        }
+        try {
+            cantidad_min = cantidad_min - 10;
+            if(cantidad_min<10){
+                cantidad_min=10;
+            }
+            textNivelMinimo.setText(String.valueOf(cantidad_min));
+        } catch (NumberFormatException e) {
+            System.out.println("Error: El texto ingresado no es un número válido.");
+        }
     }
     //INICIANDO EL PROGRAMA
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -165,6 +233,9 @@ public class crearGestionControllers implements Initializable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+        textNivelMaximo.setText("50");
+        textNivelMinimo.setText("20");
 
     }
 }

@@ -19,19 +19,19 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="textUsuario" disable="true" layoutX="609.0" layoutY="275.0" prefHeight="40.0" prefWidth="406.0">
+      <TextField fx:id="textUsuario" editable="false" layoutX="609.0" layoutY="275.0" prefHeight="40.0" prefWidth="406.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <TextField fx:id="textNombre" disable="true" layoutX="609.0" layoutY="365.0" prefHeight="40.0" prefWidth="406.0">
+      <TextField fx:id="textNombre" editable="false" layoutX="609.0" layoutY="365.0" prefHeight="40.0" prefWidth="406.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <TextField fx:id="textApellidoP" disable="true" layoutX="724.0" layoutY="445.0" prefHeight="40.0" prefWidth="292.0">
+      <TextField fx:id="textApellidoP" editable="false" layoutX="724.0" layoutY="445.0" prefHeight="40.0" prefWidth="292.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <TextField fx:id="textTelefono" disable="true" layoutX="624.0" layoutY="523.0" prefHeight="40.0" prefWidth="396.0">
+      <TextField fx:id="textTelefono" editable="false" layoutX="624.0" layoutY="523.0" prefHeight="40.0" prefWidth="396.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
