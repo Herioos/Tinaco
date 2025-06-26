@@ -14,13 +14,13 @@
             <Image url="@../accests/ver_gestion.jpg" />
          </image>
       </ImageView>
-      <TableView layoutX="89.0" layoutY="191.0" prefHeight="386.0" prefWidth="1117.0">
+      <TableView fx:id="tablaGestion" layoutX="89.0" layoutY="191.0" prefHeight="386.0" prefWidth="1117.0">
         <columns>
-          <TableColumn prefWidth="140.79996490478516" text="Numero" />
-          <TableColumn prefWidth="233.60003662109375" text="Nombre de gestion" />
-            <TableColumn prefWidth="240.79995727539062" text="Limite maximo" />
-            <TableColumn prefWidth="223.20001220703125" text="Limite minimo" />
-            <TableColumn prefWidth="275.99993896484375" text="Nombre del tinaco" />
+          <TableColumn fx:id="numeroGestion" prefWidth="140.79996490478516" text="Numero" />
+          <TableColumn fx:id="nombreGestion" prefWidth="233.60003662109375" text="Nombre de gestion" />
+            <TableColumn fx:id="limMax" prefWidth="240.79995727539062" text="Limite maximo" />
+            <TableColumn fx:id="limMin" prefWidth="223.20001220703125" text="Limite minimo" />
+            <TableColumn fx:id="nombreTinaco" prefWidth="275.99993896484375" text="Nombre del tinaco" />
         </columns>
       </TableView>
       <Button fx:id="botonAtrasVerGestion" layoutY="598.0" mnemonicParsing="false" onAction="#atrasVerGestionClick" opacity="0.0" prefHeight="101.0" prefWidth="217.0" text="Button" />

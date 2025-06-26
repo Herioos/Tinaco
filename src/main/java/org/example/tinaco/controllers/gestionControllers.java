@@ -67,13 +67,14 @@ public class gestionControllers implements Initializable {
     }
     //NO TOCAR --- // VER GESTIONES
     @FXML
-    public void verGestionClick(ActionEvent actionEvent) throws IOException {
+    public void verGestionClick(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         Stage stage = (Stage) botonVerGestion.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/ver_gestion.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         verGestionControllers verGestion = fxmlLoader.getController();
         verGestion.pasarUsuario(usuariosG);
+        verGestion.cargarDatos();
 
         stage.setTitle("Ver geationes de tinacos ( "+usuariosG.getNombreU()+" )");
         stage.setScene(scene);

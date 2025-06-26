@@ -60,7 +60,7 @@ public class crearGestionControllers implements Initializable {
         stage.setTitle("Gestion de agua ( "+usuariosCg.getNombreU()+" )");
         stage.setScene(scene);
     }
-    //
+    // AÑADIR GESTION
     @FXML
     public void agregarGestionClick(ActionEvent actionEvent) throws ClassNotFoundException, IOException {
 

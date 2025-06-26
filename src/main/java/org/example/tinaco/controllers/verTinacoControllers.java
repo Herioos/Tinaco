@@ -12,7 +12,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.tinaco.MainApplication;
 import org.example.tinaco.models.ObtenerUsuarios;
-import org.example.tinaco.models.TablaSensores;
 import org.example.tinaco.models.TablaTinacos;
 
 import java.io.IOException;
