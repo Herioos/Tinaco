@@ -183,6 +183,7 @@ public class gestionControllers implements Initializable {
     //NO TOCAR --- // AÑADIR SENSOR
     @FXML
     public void anadirSensorClick(ActionEvent actionEvent) throws ClassNotFoundException, IOException {
+        //verifica si puso algo en el Textfile
         if(textNombreSensor.getText().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Alerta");
@@ -191,7 +192,8 @@ public class gestionControllers implements Initializable {
             alert.show();
             return;
         }
-        if(textNombreSensor.getText().length()>=16){
+        //que sea menor a 16 caracteres
+        if(textNombreSensor.getText().length()>16){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Alerta");
             alert.setHeaderText("OPSSS .... ");

@@ -44,6 +44,8 @@ public class eliminarTinacoControllers {
     /// CHAMBA DE HERI
     @FXML
     public boolean eliminarTinacoClick(ActionEvent actionEvent) throws ClassNotFoundException {
+        //verifica si hay algo en el textFile
+        //verificarSiHay();
         // 1. Validación básica
         if (textEliminarTinaco.getText().isEmpty()) {
             mostrarAlerta(Alert.AlertType.WARNING, "Verifique si colocó la ID",
@@ -128,7 +130,6 @@ public class eliminarTinacoControllers {
             return false;
         }
     }
-
     private void mostrarAlerta(Alert.AlertType tipo, String encabezado, String cuerpo) {
         Alert a = new Alert(tipo);
         a.setTitle("Aviso");
@@ -136,8 +137,6 @@ public class eliminarTinacoControllers {
         a.setContentText(cuerpo);
         a.show();
     }
-
-
     //TABLA CON LOS TINACOS
     public void cargarDatos() throws ClassNotFoundException {
         String url = "jdbc:mysql://localhost:3306/";
@@ -176,5 +175,15 @@ public class eliminarTinacoControllers {
         colNumeroTinaco.setCellValueFactory(new PropertyValueFactory<>("numeroTinaco"));
         colNombreTinaco.setCellValueFactory(new PropertyValueFactory<>("nombreTinaco"));
         tablaTinacos.setItems(listaTinacos);
+    }
+    public void verificarSiHay(){
+        if(textEliminarTinaco.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Alerta");
+            alert.setHeaderText("ERROR");
+            alert.setContentText("Verifique que alla puesto la ID correctamente");
+            alert.show();
+            return ;
+        }
     }
 }
