@@ -81,13 +81,14 @@ public class gestionControllers implements Initializable {
     }
     //NO TOCAR --- // ELIMINAR GESTION
     @FXML
-    public void eliminarGestionClick(ActionEvent actionEvent) throws IOException {
+    public void eliminarGestionClick(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         Stage stage = (Stage) botonEliminarGestion.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/eliminar_gestion.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         eliminarGestionControllers eliminarGestion = fxmlLoader.getController();
         eliminarGestion.pasarUsuario(usuariosG);
+        eliminarGestion.cargarDatos();
 
         stage.setTitle("Eliminar gestión ( "+usuariosG.getNombreU()+" )");
         stage.setScene(scene);
