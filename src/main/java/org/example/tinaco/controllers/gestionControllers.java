@@ -33,6 +33,7 @@ public class gestionControllers implements Initializable {
     @FXML private Button botonAnadirSensor;
     @FXML private Button botonVerTinaco;
     @FXML private Button botonEliminarTinaco;
+    @FXML private Button botonAnadirArea;
     @FXML private TextField textNombreSensor;
     @FXML private TextField textIdSensor;
     //CONSTRUCTOR
@@ -310,6 +311,19 @@ public class gestionControllers implements Initializable {
             e.printStackTrace();
             return false;
         }
+    }
+    //
+    @FXML
+    public void anadirAreaClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) botonAnadirArea.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/crear_area.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        crear_areaControllers crearA = fxmlLoader.getController();
+        crearA.pasarUsuario(usuariosG);
+
+        stage.setTitle("Menu de " + usuariosG.getNombreU());
+        stage.setScene(scene);
     }
 }
 

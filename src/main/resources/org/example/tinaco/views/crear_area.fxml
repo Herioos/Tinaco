@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="730.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tinaco.controllers.crear_areaControllers">
+   <children>
+      <ImageView fitHeight="730.0" fitWidth="1290.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../accests/anadir_area.png" />
+         </image>
+      </ImageView>
+      <ComboBox fx:id="comboArea" layoutX="255.0" layoutY="308.0" prefHeight="54.0" prefWidth="254.0" promptText="Seleccione un area" />
+      <ComboBox fx:id="comboSensor" layoutX="253.0" layoutY="573.0" prefHeight="54.0" prefWidth="254.0" promptText="Seleccione un sensor" />
+      <TableView fx:id="tablaAreas" layoutX="566.0" layoutY="184.0" prefHeight="506.0" prefWidth="386.0">
+        <columns>
+          <TableColumn fx:id="numero_area" prefWidth="62.4000244140625" text="ID" />
+          <TableColumn fx:id="nombre_area" prefWidth="149.5999755859375" text="Nombre del area" />
+            <TableColumn fx:id="nombre_sensor" prefWidth="175.20001220703125" text="Nombre del sensor" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tablaSensores" layoutX="1002.0" layoutY="184.0" prefHeight="506.0" prefWidth="246.0">
+         <columns>
+            <TableColumn fx:id="numero_sensor" prefWidth="63.20001220703125" text="ID" />
+            <TableColumn fx:id="nombre_sensor" prefWidth="182.4000244140625" text="Nombre del sensor" />
+         </columns>
+      </TableView>
+      <Button fx:id="botonAgregarArea" layoutX="25.0" layoutY="183.0" mnemonicParsing="false" onAction="#agregarAreaClick" opacity="0.0" prefHeight="107.0" prefWidth="186.0" text="Button" />
+      <Button fx:id="botonAtrasArea" layoutX="25.0" layoutY="308.0" mnemonicParsing="false" onAction="#atrasAreaClick" opacity="0.0" prefHeight="107.0" prefWidth="186.0" text="Button" />
+   </children>
+</AnchorPane>

@@ -8,7 +8,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
 
 
 <AnchorPane prefHeight="730.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tinaco.controllers.ver_historialControllers">
@@ -19,10 +18,7 @@
          </image>
       </ImageView>
       <ComboBox fx:id="comboTinaco" layoutX="100.0" layoutY="258.0" onAction="#cargarGrafica" prefHeight="51.0" prefWidth="249.0" promptText="Seleccione un tinaco" />
-      <ComboBox layoutX="100.0" layoutY="427.0" prefHeight="51.0" prefWidth="249.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutX="753.0" layoutY="196.0" stroke="BLACK" strokeType="INSIDE" width="181.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="457.0" layoutX="460.0" layoutY="205.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutX="804.0" layoutY="661.0" stroke="BLACK" strokeType="INSIDE" width="126.0" />
+      <ComboBox layoutX="100.0" layoutY="427.0" prefHeight="51.0" prefWidth="249.0" promptText="Seleccione un area" />
       <LineChart fx:id="lineChart" layoutX="444.0" layoutY="190.0" prefHeight="506.0" prefWidth="799.0" title="Historial de Consumo">
         <xAxis>
           <CategoryAxis label="Fecha y Hora" side="BOTTOM" />
