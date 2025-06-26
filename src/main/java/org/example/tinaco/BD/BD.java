@@ -53,7 +53,16 @@ CREATE TABLE tabla_llenados (
 
 CREATE TABLE tabla_areas(
     id_area INT AUTO_INCREMENT PRIMARY KEY,
-    fecha_ll DATE,
+    nombre_area varchar(16),
+    id_sensor INT,
+    FOREIGN KEY (id_sensor) REFERENCES tabla_sensores(id_sensor),
+    id_usuario INT,
+    FOREIGN KEY (id_usuario) REFERENCES tabla_usuarios(id_usuario)
+);
+
+create table tabla_lecturas_areas(
+	id_lectura_area INT AUTO_INCREMENT PRIMARY KEY,
+	fecha_ll DATE,
     hora_ll TIME,
     cantidad_ll INT,
     id_sensor INT,

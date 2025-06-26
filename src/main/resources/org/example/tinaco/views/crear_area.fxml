@@ -21,13 +21,13 @@
         <columns>
           <TableColumn fx:id="numero_area" prefWidth="62.4000244140625" text="ID" />
           <TableColumn fx:id="nombre_area" prefWidth="149.5999755859375" text="Nombre del area" />
-            <TableColumn fx:id="nombre_sensor" prefWidth="175.20001220703125" text="Nombre del sensor" />
+            <TableColumn fx:id="nombre_sensor_a" prefWidth="175.20001220703125" text="Nombre del sensor" />
         </columns>
       </TableView>
       <TableView fx:id="tablaSensores" layoutX="1002.0" layoutY="184.0" prefHeight="506.0" prefWidth="246.0">
          <columns>
             <TableColumn fx:id="numero_sensor" prefWidth="63.20001220703125" text="ID" />
-            <TableColumn fx:id="nombre_sensor" prefWidth="182.4000244140625" text="Nombre del sensor" />
+            <TableColumn fx:id="nombre_sensor_s" prefWidth="182.4000244140625" text="Nombre del sensor" />
          </columns>
       </TableView>
       <Button fx:id="botonAgregarArea" layoutX="25.0" layoutY="183.0" mnemonicParsing="false" onAction="#agregarAreaClick" opacity="0.0" prefHeight="107.0" prefWidth="186.0" text="Button" />
