@@ -17,8 +17,8 @@
          </image>
       </ImageView>
       <ComboBox fx:id="comboTinaco" layoutX="100.0" layoutY="258.0" onAction="#cargarGrafica" prefHeight="51.0" prefWidth="249.0" promptText="Seleccione un tinaco" />
-      <ComboBox fx:id="comboSensor" layoutX="100.0" layoutY="427.0" onAction="#cargarGrafica_s" prefHeight="51.0" prefWidth="249.0" promptText="Seleccione un area" />
-      <LineChart fx:id="lineChart" layoutX="444.0" layoutY="190.0" prefHeight="506.0" prefWidth="799.0" title="Historial de Consumo">
+      <ComboBox fx:id="comboArea" layoutX="100.0" layoutY="427.0" onAction="#cargarGraficaArea" prefHeight="51.0" prefWidth="249.0" promptText="Seleccione un area" />
+      <LineChart fx:id="lineChart" layoutX="444.0" layoutY="185.0" prefHeight="267.0" prefWidth="799.0" title="Historial de Consumo">
         <xAxis>
           <CategoryAxis label="Fecha y Hora" side="BOTTOM" />
         </xAxis>
@@ -27,5 +27,13 @@
         </yAxis>
       </LineChart>
       <Button fx:id="botonAtrasVerH" layoutX="48.0" layoutY="612.0" mnemonicParsing="false" onAction="#atrasVerHClick" opacity="0.0" prefHeight="93.0" prefWidth="200.0" text="Button" />
+      <LineChart fx:id="lineChartArea" layoutX="444.0" layoutY="440.0" prefHeight="254.0" prefWidth="799.0" title="Historial de Consumo">
+         <xAxis>
+            <CategoryAxis label="Fecha y Hora" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis label="Cantidad (litros)" side="LEFT" />
+         </yAxis>
+      </LineChart>
    </children>
 </AnchorPane>

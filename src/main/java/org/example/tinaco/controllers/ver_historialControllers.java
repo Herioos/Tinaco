@@ -20,13 +20,15 @@ import javafx.scene.chart.XYChart;
 public class ver_historialControllers {
 
     @FXML private ComboBox<String> comboTinaco; // Changed to String
-    @FXML private ComboBox<String> comboSensor;
     @FXML private LineChart<String,Number> lineChart;
+    @FXML private ComboBox<String> comboArea;
+    @FXML private LineChart<String,Number> lineChartArea;
 
     private ObtenerUsuarios usuariosVi = new ObtenerUsuarios();
     @FXML private Button botonAtrasVerH;
 
-    private Map<String, Integer> tinacoNameToIdMap = new HashMap<>(); // Map to store tinaco name to ID
+    private Map<String, Integer> tinacoNameToIdMap = new HashMap<>();
+    private Map<String, Integer> areaNameToIdMap = new HashMap<>();
 
     // Cargar tinacos del usuario logueado
     @FXML
@@ -55,6 +57,33 @@ public class ver_historialControllers {
             e.printStackTrace();
         }
     }
+    // Cargar areas del usuario logueado
+    @FXML
+    private void cargarAreasDelUsuario() { // Renamed from cargarSensoresDelUsuario
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tinaco", "root", "")) {
+            // Query to select area names and IDs, joining tabla_areas with tabla_lecturas_areas
+            String sql = "SELECT DISTINCT ta.id_area, ta.nombre_area \n" +
+                    "FROM tabla_areas ta\n" +
+                    "JOIN tabla_lecturas_areas tla \n" +
+                    "ON ta.id_area = tla.id_lectura_area\n" +
+                    "WHERE tla.id_usuario = ?";
+
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, usuariosVi.getId_usuario());
+            ResultSet rs = pst.executeQuery();
+            areaNameToIdMap.clear();
+            comboArea.getItems().clear();
+            while (rs.next()) {
+                String nombreArea = rs.getString("nombre_area");
+                int idArea = rs.getInt("id_area");
+                comboArea.getItems().add(nombreArea);
+                areaNameToIdMap.put(nombreArea, idArea);
+            }
+            comboArea.setOnAction(e -> cargarGraficaArea()); // Renamed from cargarGraficaSensor
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     // Mostrar historial del tinaco seleccionado
     @FXML
     public void cargarGrafica() {
@@ -70,8 +99,10 @@ public class ver_historialControllers {
         serie.setName("Historial de consumo");
 
         try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tinaco", "root", "")) {
-            String sql = "SELECT fecha_l, hora_l, cantidad_l FROM tabla_lecturas " +
-                    "WHERE id_usuario = ? AND id_tinaco = ? ORDER BY fecha_l, hora_l";
+            String sql = "SELECT fecha_l, hora_l, cantidad_l FROM tabla_lecturas\n" +
+                    "WHERE id_usuario = ?\n" +
+                    "AND id_tinaco = ? \n" +
+                    "ORDER BY fecha_l, hora_l";
 
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, usuariosVi.getId_usuario());
@@ -90,13 +121,48 @@ public class ver_historialControllers {
             e.printStackTrace();
         }
     }
+    // Mostrar historial del area seleccionada
+    @FXML
+    public void cargarGraficaArea() { // Renamed from cargarGraficaSensor
+        String nombreAreaSeleccionada = comboArea.getValue(); // Changed from comboSensor
+        if (nombreAreaSeleccionada == null) return;
 
+        Integer idArea = areaNameToIdMap.get(nombreAreaSeleccionada); // Changed from sensorNameToIdMap
+        if (idArea == null) return;
 
+        lineChartArea.getData().clear(); // Changed from lineChartSensor
 
+        XYChart.Series<String, Number> serie = new XYChart.Series<>();
+        serie.setName("Historial de Área"); // Changed title
+
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tinaco", "root", "")) {
+            // Query uses id_area now
+            String sql = "SELECT fecha_ll, hora_ll, cantidad_ll \n" +
+                    "FROM tabla_lecturas_areas\n" +
+                    "WHERE id_usuario = ? \n" +
+                    "AND id_lectura_area  = ? \n" +
+                    "ORDER BY fecha_ll, hora_ll";
+
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, usuariosVi.getId_usuario());
+            pst.setInt(2, idArea); // Was idSensor
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                String fechaHora = rs.getDate("fecha_ll") + " " + rs.getTime("hora_ll").toString();
+                int cantidad = rs.getInt("cantidad_ll");
+                serie.getData().add(new XYChart.Data<>(fechaHora, cantidad));
+            }
+            lineChartArea.getData().add(serie); // Changed from lineChartSensor
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     //CONSTRUCTORES-------------------------------------------------
     public void pasarUsuario(ObtenerUsuarios usuarios){
         this.usuariosVi = usuarios;
         cargarTinacosDelUsuario();
+        cargarAreasDelUsuario();
     }
     //volver atras
     public void atrasVerHClick(ActionEvent actionEvent) throws IOException {
