@@ -3,7 +3,6 @@ package org.example.tinaco.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
@@ -21,6 +20,7 @@ import javafx.scene.chart.XYChart;
 public class ver_historialControllers {
 
     @FXML private ComboBox<String> comboTinaco; // Changed to String
+    @FXML private ComboBox<String> comboSensor;
     @FXML private LineChart<String,Number> lineChart;
 
     private ObtenerUsuarios usuariosVi = new ObtenerUsuarios();

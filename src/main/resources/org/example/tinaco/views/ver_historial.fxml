@@ -9,7 +9,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="730.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tinaco.controllers.ver_historialControllers">
    <children>
       <ImageView fitHeight="730.0" fitWidth="1290.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
@@ -18,7 +17,7 @@
          </image>
       </ImageView>
       <ComboBox fx:id="comboTinaco" layoutX="100.0" layoutY="258.0" onAction="#cargarGrafica" prefHeight="51.0" prefWidth="249.0" promptText="Seleccione un tinaco" />
-      <ComboBox layoutX="100.0" layoutY="427.0" prefHeight="51.0" prefWidth="249.0" promptText="Seleccione un area" />
+      <ComboBox fx:id="comboSensor" layoutX="100.0" layoutY="427.0" onAction="#cargarGrafica_s" prefHeight="51.0" prefWidth="249.0" promptText="Seleccione un area" />
       <LineChart fx:id="lineChart" layoutX="444.0" layoutY="190.0" prefHeight="506.0" prefWidth="799.0" title="Historial de Consumo">
         <xAxis>
           <CategoryAxis label="Fecha y Hora" side="BOTTOM" />
