@@ -27,32 +27,32 @@ public class registroControllers {
     @FXML private TextField textNumeroR;
     @FXML
     public void cancelarRegistroCick(ActionEvent actionEvent) throws IOException {
-        if(textNombreC.getText().isEmpty()||textNombreU.getText().isEmpty()||
-                textApellido.getText().isEmpty()||textContrasena.getText().isEmpty()||
-                textTelefono.getText().isEmpty()||textNumeroR.getText().isEmpty()) {
-            //volver
+        if(textNombreC.getText().isEmpty() || textNombreU.getText().isEmpty() ||
+                textApellido.getText().isEmpty() || textContrasena.getText().isEmpty() ||
+                textTelefono.getText().isEmpty() || textNumeroR.getText().isEmpty()) {
+            // volver
             Stage stage = (Stage) botonCancelarRegistro.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/login.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             stage.setTitle("Login");
             stage.setScene(scene);
-        }else {
-            //alerta de salir
+        } else {
+            // alerta de salir
             Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
             alert2.setTitle("Aviso");
             alert2.setHeaderText("¿Estas seguro que quieres regresar?");
             alert2.setContentText("Se perderan todos los datos ingresados");
-            alert2.show();
+
             Optional<ButtonType> resultado = alert2.showAndWait();
 
             if (resultado.isPresent() && resultado.get().equals(ButtonType.OK)) {
-                //volver
+                // volver
                 Stage stage = (Stage) botonCancelarRegistro.getScene().getWindow();
                 FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/login.fxml"));
                 Scene scene = new Scene(fxmlLoader.load());
                 stage.setTitle("Login");
                 stage.setScene(scene);
-            }else {
+            } else {
                 return;
             }
         }
@@ -73,6 +73,44 @@ public class registroControllers {
             alert.show();
             return;
         }
+        String nombreUsuario = textNombreU.getText();
+        if (!nombreUsuario.matches("[a-zA-Z]+") || nombreUsuario.length() >= 16) {
+            Alert alertNombreU = new Alert(Alert.AlertType.ERROR);
+            alertNombreU.setTitle("Alerta");
+            alertNombreU.setHeaderText("Nombre de Usuario no válido");
+            alertNombreU.setContentText("El nombre de usuario debe contener solo letras y tener menos de 16 caracteres.");
+            alertNombreU.show();
+            return;
+        }
+        // Verificar que textContrasena solo contenga números y sea menor a 16 caracteres
+        String contrasenaText = textContrasena.getText();
+        if (!contrasenaText.matches("[0-9]+") || contrasenaText.length() >= 16) {
+            Alert alertContrasena = new Alert(Alert.AlertType.ERROR);
+            alertContrasena.setTitle("Alerta");
+            alertContrasena.setHeaderText("Contraseña no válida");
+            alertContrasena.setContentText("La contraseña debe contener solo números y tener menos de 16 caracteres.");
+            alertContrasena.show();
+            return;
+        }
+        //verifica que el nombre de cuenta sea no mayor de 16
+        if(textNombreC.getText().length()>16){
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+            alert2.setTitle("Aviso");
+            alert2.setHeaderText("El nombre de cuenta no es valido");
+            alert2.setContentText("verifique que no pase de los 16 caracteres");
+            alert2.show();
+            return;
+        }
+        //verifica que el apellido sea solo letras y menor de 16 caracteres
+        String apellido = textApellido.getText();
+        if (!apellido.matches("[a-zA-Z]+") || apellido.length() >= 16) {
+            Alert alertNombreU = new Alert(Alert.AlertType.ERROR);
+            alertNombreU.setTitle("Alerta");
+            alertNombreU.setHeaderText("Apellido del Usuario no válido");
+            alertNombreU.setContentText("El apellido del usuario debe contener solo letras y tener menos de 16 caracteres.");
+            alertNombreU.show();
+            return;
+        }
         //verificar si es numero
         boolean verificar_numero=containsSpecial(textTelefono.getText());
         if(verificar_numero==true){
@@ -83,14 +121,14 @@ public class registroControllers {
             alert2.show();
             return;
         }
-        //verificar nuero de recuperacion
-        verificar_numero=containsSpecial(textNumeroR.getText());
-        if(verificar_numero==true){
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-            alert2.setTitle("Aviso");
-            alert2.setHeaderText("El numero de recuperacion no es valido");
-            alert2.setContentText("verifique que sean numeros y no letras");
-            alert2.show();
+        // Verificar que textNumeroR solo contenga números y sea menor a 16 caracteres
+        String numeroRecuperacionText = textNumeroR.getText();
+        if (!numeroRecuperacionText.matches("[0-9]+") || numeroRecuperacionText.length() >= 16) {
+            Alert alertNumeroR = new Alert(Alert.AlertType.ERROR);
+            alertNumeroR.setTitle("Alerta");
+            alertNumeroR.setHeaderText("Número de Recuperación no válido");
+            alertNumeroR.setContentText("El número de recuperación debe contener solo números y tener menos de 16 caracteres.");
+            alertNumeroR.show();
             return;
         }
         //verifica si son 10 numeros

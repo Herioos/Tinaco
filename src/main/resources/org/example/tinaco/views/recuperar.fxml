@@ -19,7 +19,7 @@
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <TextField fx:id="textRecuperarContrasena" alignment="TOP_CENTER" disable="true" layoutX="499.0" layoutY="577.0" prefHeight="40.0" prefWidth="307.0" promptText="contraseña">
+      <TextField fx:id="textRecuperarContrasena" alignment="TOP_CENTER" editable="false" layoutX="499.0" layoutY="577.0" prefHeight="40.0" prefWidth="307.0" promptText="contraseña">
          <font>
             <Font size="20.0" />
          </font></TextField>
