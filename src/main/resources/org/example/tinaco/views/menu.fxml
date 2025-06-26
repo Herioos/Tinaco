@@ -13,7 +13,7 @@
             <Image url="@../accests/menu.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="botonHistorial" disable="true" layoutX="103.0" layoutY="327.0" mnemonicParsing="false" onAction="#verHistorialClick" opacity="0.0" prefHeight="288.0" prefWidth="290.0" text="Button">
+      <Button fx:id="botonHistorial" layoutX="103.0" layoutY="327.0" mnemonicParsing="false" onAction="#verHistorialClick" opacity="0.0" prefHeight="288.0" prefWidth="290.0" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

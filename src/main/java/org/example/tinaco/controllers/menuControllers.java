@@ -29,9 +29,13 @@ public class menuControllers {
     @FXML
     public void verHistorialClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) botonHistorial.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/historial_consumo.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/ver_historial.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Ver historial de consumo");
+
+        ver_historialControllers verH = fxmlLoader.getController();
+        verH.pasarUsuario(usuariosM);
+
+        stage.setTitle("Ver historial de consumo de ( "+usuariosM.getNombreU()+" ) ");
         stage.setScene(scene);
     }
     //NO TOCAR --- //gestion

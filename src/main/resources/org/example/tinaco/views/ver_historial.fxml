@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+
+<AnchorPane prefHeight="730.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tinaco.controllers.ver_historialControllers">
+   <children>
+      <ImageView fitHeight="730.0" fitWidth="1290.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../accests/ver_historial.png" />
+         </image>
+      </ImageView>
+      <ComboBox fx:id="comboTinaco" layoutX="100.0" layoutY="258.0" onAction="#cargarGrafica" prefHeight="51.0" prefWidth="249.0" promptText="Seleccione un tinaco" />
+      <ComboBox layoutX="100.0" layoutY="427.0" prefHeight="51.0" prefWidth="249.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutX="753.0" layoutY="196.0" stroke="BLACK" strokeType="INSIDE" width="181.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="457.0" layoutX="460.0" layoutY="205.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutX="804.0" layoutY="661.0" stroke="BLACK" strokeType="INSIDE" width="126.0" />
+      <LineChart fx:id="lineChart" layoutX="444.0" layoutY="190.0" prefHeight="506.0" prefWidth="799.0" title="Historial de Consumo">
+        <xAxis>
+          <CategoryAxis label="Fecha y Hora" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis label="Cantidad (litros)" side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Button fx:id="botonAtrasVerH" layoutX="48.0" layoutY="612.0" mnemonicParsing="false" onAction="#atrasVerHClick" opacity="0.0" prefHeight="93.0" prefWidth="200.0" text="Button" />
+   </children>
+</AnchorPane>
