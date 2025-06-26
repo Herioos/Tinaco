@@ -1,8 +1,6 @@
 package org.example.tinaco.BD;
 
 public class BD {
-//    --Scrip de BD AquaControl--
-//
 //    CREATE TABLE tabla_usuarios (
 //            id_usuario INT AUTO_INCREMENT PRIMARY KEY,
 //            nombreU_u VARCHAR(32),
@@ -27,6 +25,16 @@ public class BD {
 //    id_sensor INT,
 //    FOREIGN KEY (id_sensor) REFERENCES tabla_sensores(id_sensor),
 //    nombre_s VARCHAR(16),
+//    id_usuario INT,
+//    FOREIGN KEY (id_usuario) REFERENCES tabla_usuarios(id_usuario)
+//            );
+//
+//    create table tabla_gestiones(
+//            id_gestion INT auto_increment primary key,
+//            nombre_g Varchar(16),
+//    nivelMaximo int(3),
+//    nivelMinimo int(3),
+//    nombre_t varchar(16),
 //    id_usuario INT,
 //    FOREIGN KEY (id_usuario) REFERENCES tabla_usuarios(id_usuario)
 //            );
