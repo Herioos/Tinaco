@@ -62,9 +62,9 @@ public class ver_historialControllers {
     private void cargarAreasDelUsuario() { // Renamed from cargarSensoresDelUsuario
         try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tinaco", "root", "")) {
             // Query to select area names and IDs, joining tabla_areas with tabla_lecturas_areas
-            String sql = "SELECT DISTINCT ta.id_area, ta.nombre_area \n" +
+            String sql = "SELECT DISTINCT ta.id_area, ta.nombre_area\n" +
                     "FROM tabla_areas ta\n" +
-                    "JOIN tabla_lecturas_areas tla \n" +
+                    "JOIN tabla_lecturas_areas tla\n" +
                     "ON ta.id_area = tla.id_lectura_area\n" +
                     "WHERE tla.id_usuario = ?";
 
@@ -137,11 +137,11 @@ public class ver_historialControllers {
 
         try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tinaco", "root", "")) {
             // Query uses id_area now
-            String sql = "SELECT fecha_ll, hora_ll, cantidad_ll \n" +
-                    "FROM tabla_lecturas_areas\n" +
-                    "WHERE id_usuario = ? \n" +
-                    "AND id_lectura_area  = ? \n" +
-                    "ORDER BY fecha_ll, hora_ll";
+            String sql = "SELECT tla.fecha_ll, tla.hora_ll, tla.cantidad_ll \n" +
+                    "FROM tabla_lecturas_areas tla\n" +
+                    "WHERE tla.id_usuario = ?\n" +
+                    "AND tla.id_sensor = ?\n" +
+                    "ORDER BY tla.fecha_ll, tla.hora_ll";
 
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, usuariosVi.getId_usuario());
