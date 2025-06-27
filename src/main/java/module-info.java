@@ -3,6 +3,7 @@ module org.example.tinaco {
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
+    requires com.fazecast.jSerialComm;
 
 
     opens org.example.tinaco to javafx.fxml;
