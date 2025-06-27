@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class lectorSerial {
 
     public static void main(String[] args) {
-        SerialPort puerto = SerialPort.getCommPort("COM6"); // Ajusta el puerto
+        SerialPort puerto = SerialPort.getCommPort(""); // Ajusta el puerto----------------------
         puerto.setBaudRate(9600);
         if (!puerto.openPort()) {
             System.out.println("No se pudo abrir el puerto.");

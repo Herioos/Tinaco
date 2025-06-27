@@ -76,25 +76,12 @@ CREATE TABLE tabla_lecturas (
     fecha_l DATE,
     hora_l TIME,
     cantidad_l INT,
+    flujo_abastecimiento FLOAT,
     id_tinaco INT,
     id_usuario INT,
     FOREIGN KEY (id_tinaco) REFERENCES tabla_tinacos(id_tinaco),
     FOREIGN KEY (id_usuario) REFERENCES tabla_usuarios(id_usuario)
 );
-
-CREATE TABLE lecturas_completas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    fecha DATE,
-    hora TIME,
-    nivel_cm INT,
-    flujo_abastecimiento FLOAT,
-    flujo_cocina FLOAT,
-    flujo_jardin FLOAT,
-    flujo_bano FLOAT,
-    id_usuario INT,
-    id_tinaco INT
-);
-
 
 */
 }
